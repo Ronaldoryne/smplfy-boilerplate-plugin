@@ -3,30 +3,32 @@
 namespace SMPLFY\boilerplate;
 
 class WordpressAdapter {
-	private WPHeartbeatExample $wpHeartbeatExample;
 
-	public function __construct( WPHeartbeatExample $wpHeartbeatExample ) {
-		$this->wpHeartbeatExample = $wpHeartbeatExample;
+    private RegHeartbeatHandler $heartbeatHandler;
 
-		$this->register_hooks();
-		$this->register_filters();
-	}
+    public function __construct( RegHeartbeatHandler $heartbeatHandler ) {
+        $this->heartbeatHandler = $heartbeatHandler;
 
-	/**
-	 * Register Wordpress hooks to handle custom logic
-	 *
-	 * @return void
-	 */
-	public function register_hooks() {
+        $this->register_hooks();
+        $this->register_filters();
+    }
 
-	}
+    /**
+     * Register WordPress hooks
+     */
+    public function register_hooks(): void {
+        // Future WordPress actions go here
+    }
 
-	/**
-	 * Register Wordpress filters to handle custom logic
-	 *
-	 * @return void
-	 */
-	public function register_filters() {
-		add_filter( 'heartbeat_received', [ $this->wpHeartbeatExample, 'receive_heartbeat' ], 10, 2 );
-	}
+    /**
+     * Register WordPress filters
+     */
+    public function register_filters(): void {
+        add_filter(
+            'heartbeat_received',
+            [ $this->heartbeatHandler, 'receive_heartbeat' ],
+            10,
+            2
+        );
+    }
 }

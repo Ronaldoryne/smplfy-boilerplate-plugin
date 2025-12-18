@@ -18,10 +18,10 @@ class DependencyFactory {
 		$gravityFormsWrapper = new SMPLFY_GravityFormsApiWrapper();
 
 		// Repositories
-		$exampleRepository = new ExampleRepository( $gravityFormsWrapper );
+		$exampleRepository = new RegRepository( $gravityFormsWrapper );
 		//Usecases
-		$exampleUsecase     = new ExampleUsecase( $exampleRepository );
-		$wpHeartbeatExample = new WPHeartbeatExample( $exampleRepository );
+		$exampleUsecase     = new RegUsecase( $exampleRepository );
+		$wpHeartbeatExample = new RegHeartbeatHandler( $exampleRepository );
 
 
 		new GravityFormsAdapter( $exampleUsecase );

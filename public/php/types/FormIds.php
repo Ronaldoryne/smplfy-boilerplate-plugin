@@ -5,5 +5,5 @@
 
 namespace SMPLFY\boilerplate;
 class FormIds {
-	const EXAMPLE_FORM_ID = 9999;
+	const REG_FORM_ID = 5;
 }

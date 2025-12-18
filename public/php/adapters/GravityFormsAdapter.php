@@ -4,32 +4,36 @@
  */
 
 namespace SMPLFY\boilerplate;
+
 class GravityFormsAdapter {
 
-	private ExampleUsecase $exampleUsecase;
+    private RegUsecase $regUsecase;
 
-	public function __construct( ExampleUsecase $exampleUsecase ) {
-		$this->exampleUsecase = $exampleUsecase;
+    public function __construct( RegUsecase $regUsecase ) {
+        $this->regUsecase = $regUsecase;
 
-		$this->register_hooks();
-		$this->register_filters();
-	}
+        $this->register_hooks();
+        $this->register_filters();
+    }
 
-	/**
-	 * Register gravity forms hooks to handle custom logic
-	 *
-	 * @return void
-	 */
-	public function register_hooks() {
-		add_action( 'gform_after_submission_9999', [ $this->exampleUsecase, 'example_function' ], 10, 4 );
-	}
+    /**
+     * Register Gravity Forms hooks to handle custom logic
+     */
+    public function register_hooks(): void {
 
-	/**
-	 * Register gravity forms filters to handle custom logic
-	 *
-	 * @return void
-	 */
-	public function register_filters() {
+        // Form ID 5 = "reg"
+        add_action(
+            'gform_after_submission_5',
+            [ $this->regUsecase, 'handle_after_submission' ],
+            10,
+            2
+        );
+    }
 
-	}
+    /**
+     * Register Gravity Forms filters to handle custom logic
+     */
+    public function register_filters(): void {
+        // Add filters here if needed
+    }
 }
